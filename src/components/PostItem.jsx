@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 
 const PostItem = (props) => {
-  const {id, title, excerpt, featured_media} = props.post;
+  const {id, excerpt, featured_media} = props.post;
 
   const [postImage, setPostImage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -12,21 +13,39 @@ const PostItem = (props) => {
   useEffect(() => {
     axios.get(`/media/${featured_media}`)
     .then((res) => {
-      setPostImage(res.data.media_details.sizes.medium_large.source_url)
+      setPostImage(res.data.media_details.sizes.medium_large.source_url);
+      setIsLoading(false)
     })
     .catch((err) => {
-      setError(err.message)
+      setError(err.message);
+      setIsLoading(false)
     })
   }, [])
 
   return (
-    <div className="col-6 post-item">
-      <Link to={`/post/${id}`}>
-        <img className="img-fluid" src={postImage} alt=""/>
-        <p dangerouslySetInnerHTML={{__html: excerpt.rendered}}></p>
-      </Link>
-      <div className="post-item-overlay"></div>
-    </div>
+    <React.Fragment>
+      <div className="col-6 post-item">
+        {isLoading &&
+          <React.Fragment>
+            <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
+              <p>
+                <Skeleton count={1} height={350} />
+                <Skeleton count={5} height={15}/>
+              </p>
+            </SkeletonTheme>
+          </React.Fragment>
+        }
+        {!isLoading &&
+        <React.Fragment>
+          <Link to={`/post/${id}`}>
+            <img className="img-fluid" src={postImage} alt=""/>
+            <p dangerouslySetInnerHTML={{__html: excerpt.rendered}}></p>
+          </Link>
+          <div className="post-item-overlay"></div>
+        </React.Fragment>
+        }
+      </div>      
+    </React.Fragment>
   );
 }
 

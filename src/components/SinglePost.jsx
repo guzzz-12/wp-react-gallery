@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 
 const SinglePost = (props) => {
   const {postId} = useParams();
@@ -44,7 +45,17 @@ const SinglePost = (props) => {
 
   return (
     <React.Fragment>
-      {isLoading && <h3>Loading post...</h3>}
+      {isLoading &&
+        <React.Fragment>
+          <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
+            <p>
+              <Skeleton count={1} height={25} />
+              <Skeleton count={1} height={500} />
+              <Skeleton count={3} height={15} />
+            </p>
+          </SkeletonTheme>
+        </React.Fragment>
+      }
       {!isLoading &&
         <div className="single-post mb-3">
           <p className="single-post__date border-bottom pb-3">
