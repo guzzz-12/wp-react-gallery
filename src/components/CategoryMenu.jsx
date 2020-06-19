@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {NavLink} from "react-router-dom";
 import axios from "axios";
 import CategoryItem from "./CategoryItem";
 
@@ -22,6 +23,11 @@ const CategoryMenu = (props) => {
 
   return (
     <ul className="list-group">
+      <NavLink exact to={`/`}>
+        <li className="list-group-item border-bottom category-item">
+          All
+        </li>
+      </NavLink>
       {categories.map(category => {
         return (
           <CategoryItem
