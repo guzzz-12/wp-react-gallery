@@ -29,12 +29,17 @@ const PostsByCategory = (props) => {
         {!isLoading && error &&
           <ErrorMessage message={`There was an error trying to load the <strong>${props.currentCategory}</strong> category posts.`} />
         }
-        {!isLoading && !error &&
+        {!isLoading && !error && posts.length > 0 &&
           posts.map(post => {
             return (
               <PostItem key={post.id} post={post} />
             )
           })        
+        }
+        {!isLoading && !error && posts.length === 0 &&
+          <div className="w-100 mt-5">
+            <h3 className="lead text-center">No posts found for this category.</h3>
+          </div>
         }
       </div>
     </div>
