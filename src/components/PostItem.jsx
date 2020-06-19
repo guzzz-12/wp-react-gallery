@@ -25,6 +25,7 @@ const PostItem = (props) => {
         <img className="img-fluid" src={postImage} alt=""/>
         <p dangerouslySetInnerHTML={{__html: excerpt.rendered}}></p>
       </Link>
+      <div className="post-item-overlay"></div>
     </div>
   );
 }

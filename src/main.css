@@ -23,8 +23,25 @@ a:hover, a.active {
   background-color: transparent !important;
 }
 
+.post-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0);
+  z-index: -1;
+  transition: background-color 250ms;
+}
+
 .post-item {
+  position: relative;
   padding: 10px;
+}
+
+.post-item:hover .post-item-overlay {
+  background-color: rgba(255,255,255,0.25);
 }
 
 .post-item a:hover {
@@ -41,7 +58,7 @@ a:hover, a.active {
 }
 
 .post-item p {
-  padding: 0 5px;
+  margin-bottom: 0;
 }
 
 .footer {
