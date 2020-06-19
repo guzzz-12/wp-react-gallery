@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
+import ErrorMessage from "./ErrorMessage";
 
 const SinglePost = (props) => {
   const {postId} = useParams();
@@ -45,7 +46,7 @@ const SinglePost = (props) => {
 
   return (
     <React.Fragment>
-      {isLoading &&
+      {isLoading && !error &&
         <React.Fragment>
           <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
             <p>
@@ -56,7 +57,7 @@ const SinglePost = (props) => {
           </SkeletonTheme>
         </React.Fragment>
       }
-      {!isLoading &&
+      {!isLoading && !error &&
         <div className="single-post mb-3">
           <p className="single-post__date border-bottom pb-3">
             Posted on: {moment(post.date).format('MMMM Do YYYY, h:mm:ss a')} &nbsp; &mdash; &nbsp; By <strong>{postAuthor}</strong>
@@ -66,6 +67,9 @@ const SinglePost = (props) => {
           </div>
           <div className="single-post__content" dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
         </div>
+      }
+      {!isLoading && error &&
+        <ErrorMessage />
       }
     </React.Fragment>
   );
