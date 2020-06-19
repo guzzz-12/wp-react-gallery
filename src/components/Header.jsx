@@ -1,7 +1,24 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import {withRouter} from "react-router-dom";
 import {Link} from "react-router-dom";
+import {SearchContext} from "../context/searchContext";
 
-const Header = () => {
+const Header = (props) => {
+  const searchContext = useContext(SearchContext);
+
+  const [searchTerm, setsearchTerm] = useState("");
+
+  const onChangeHandler = (e) => {
+    setsearchTerm(e.target.value);
+  }
+  
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    searchContext.setSearchTerm(searchTerm);
+    await searchContext.search(searchTerm);
+    props.history.push(`/search`)
+  }
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-info">
       <div className="container">
@@ -11,9 +28,18 @@ const Header = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="form-inline ml-auto my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          <form className="form-inline ml-auto my-2 my-lg-0" onSubmit={onSubmitHandler}>
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={searchTerm}
+              onChange={onChangeHandler}
+            />
+            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">
+              Search
+            </button>
           </form>
         </div>
       </div>
@@ -21,4 +47,4 @@ const Header = () => {
   );
 }
 
-export default Header;
+export default withRouter(Header);
