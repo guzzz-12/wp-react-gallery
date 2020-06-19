@@ -30,7 +30,10 @@ const PostItem = (props) => {
             <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
               <p>
                 <Skeleton count={1} height={350} />
-                <Skeleton count={5} height={15}/>
+                <Skeleton count={1} width="100%" height={15}/>
+                <Skeleton count={1} width="90%" height={15}/>
+                <Skeleton count={1} width="95%" height={15}/>
+                <Skeleton count={1} width="50%" height={15}/>
               </p>
             </SkeletonTheme>
           </React.Fragment>

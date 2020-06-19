@@ -50,9 +50,11 @@ const SinglePost = (props) => {
         <React.Fragment>
           <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
             <p>
-              <Skeleton count={1} height={25} />
+              <Skeleton count={1} width="50%" height={25} />
               <Skeleton count={1} height={500} />
-              <Skeleton count={3} height={15} />
+              <Skeleton count={1} width="98%" height={15} />
+              <Skeleton count={1} width="95%" height={15} />
+              <Skeleton count={1} width="50%" height={15} />
             </p>
           </SkeletonTheme>
         </React.Fragment>
