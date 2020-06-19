@@ -70,6 +70,17 @@ a:hover, a.active {
   align-items: center
 }
 
+.search-results .list-group-item {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.search-results .list-group-item:hover {
+  color: #fff;
+  background-color: #5a5a5a;
+  transition: 250ms;
+}
+
 .footer {
   position: absolute;
   width: 100%;
