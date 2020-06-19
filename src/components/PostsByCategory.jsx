@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import PostItem from "./PostItem";
+import ErrorMessage from "./ErrorMessage";
 
 const PostsByCategory = (props) => {
   const {categoryId} = useParams();
@@ -11,19 +12,30 @@ const PostsByCategory = (props) => {
 
   useEffect(() => {
     axios.get(`/posts?categories=${categoryId}`)
-    .then((res) => setPosts(res.data))
-    .catch((error) => setError(error.message))
+    .then((res) => {
+      setPosts(res.data);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      setError(error.message);
+      setIsLoading(false);
+    })
   }, [categoryId])
 
   return (
     <div className="content-wrapper">
       <h3>Posts by Category: {props.currentCategory}</h3>
       <div className="row">
-        {posts.map(post => {
+        {!isLoading && error &&
+          <ErrorMessage />
+        }
+        {!isLoading && !error &&
+          posts.map(post => {
             return (
               <PostItem key={post.id} post={post} />
             )
-        })}
+          })        
+        }
       </div>
     </div>
   );
