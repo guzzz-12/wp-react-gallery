@@ -18,11 +18,13 @@ const PostsByCategory = (props) => {
   return (
     <div className="content-wrapper">
       <h3>Posts by Category: {props.currentCategory}</h3>
-      {posts.map(post => {
-          return (
-            <PostItem key={post.id} post={post} />
-          )
-      })}
+      <div className="row">
+        {posts.map(post => {
+            return (
+              <PostItem key={post.id} post={post} />
+            )
+        })}
+      </div>
     </div>
   );
 }

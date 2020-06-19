@@ -12,7 +12,7 @@ const PostItem = (props) => {
   useEffect(() => {
     axios.get(`/media/${featured_media}`)
     .then((res) => {
-      setPostImage(res.data.source_url)
+      setPostImage(res.data.media_details.sizes.medium_large.source_url)
     })
     .catch((err) => {
       setError(err.message)
@@ -20,11 +20,12 @@ const PostItem = (props) => {
   }, [])
 
   return (
-    <Link to={`/post/${id}`}>
-      <h3>{title.rendered}</h3>
-      <img className="img-fluid" src={postImage} alt=""/>
-      <p dangerouslySetInnerHTML={{__html: excerpt.rendered}}></p>
-    </Link>
+    <div className="col-6 post-item">
+      <Link to={`/post/${id}`}>
+        <img className="img-fluid" src={postImage} alt=""/>
+        <p dangerouslySetInnerHTML={{__html: excerpt.rendered}}></p>
+      </Link>
+    </div>
   );
 }
 

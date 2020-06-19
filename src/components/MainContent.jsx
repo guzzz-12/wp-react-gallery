@@ -22,7 +22,7 @@ const MainContent = () => {
   return (
     <div className="content-wrapper">
       <h3>All Posts</h3>
-      <div className="posts-items">
+      <div className="row">
         {posts.map(post => {
           return (
             <PostItem key={post.id} post={post} />
