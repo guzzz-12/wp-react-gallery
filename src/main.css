@@ -1,0 +1,34 @@
+body {
+  color: #fff;
+  background-color: #000;
+}
+
+a {
+  text-decoration: none !important;
+  color: #fff;
+}
+
+a:hover, a.active {
+  color: #79e0ff;
+  background-color: rgba(122, 224, 255, 0.15);
+}
+
+.main-wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 3.5rem;
+}
+
+.content-wrapper {
+  background-color: #1a1a1a;
+}
+
+.category-item {
+  background-color: transparent !important;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
