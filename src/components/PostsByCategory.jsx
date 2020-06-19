@@ -27,7 +27,7 @@ const PostsByCategory = (props) => {
       <h3>Posts by Category: {props.currentCategory}</h3>
       <div className="row">
         {!isLoading && error &&
-          <ErrorMessage />
+          <ErrorMessage message={`There was an error trying to load the <strong>${props.currentCategory}</strong> category posts.`} />
         }
         {!isLoading && !error &&
           posts.map(post => {

@@ -69,7 +69,7 @@ const SinglePost = (props) => {
         </div>
       }
       {!isLoading && error &&
-        <ErrorMessage />
+        <ErrorMessage message="There was an error trying to load the post data." />
       }
     </React.Fragment>
   );

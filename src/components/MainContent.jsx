@@ -26,7 +26,7 @@ const MainContent = () => {
       <h3>All Posts</h3>
       <div className="row">
         {!isLoading && error &&
-          <ErrorMessage />
+          <ErrorMessage message="There was an error trying to load the posts." />
         }
         {!isLoading && !error &&
           posts.map(post => {
