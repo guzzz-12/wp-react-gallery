@@ -13,12 +13,29 @@ const SearchResults = () => {
         {!searchContext.isSearching && searchContext.searchError &&
           <ErrorMessage message="There was an error searchig the posts."/>
         }
+        {/* Mostrar spinner mientras cargan los resultados de la búsqueda */}
+        {searchContext.isSearching &&
+          <div className="spinner-wrapper w-100">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        }
         {!searchContext.isSearching && !searchContext.searchError &&
         <React.Fragment>
           <div className="col-2"></div>
           <div className="col-8 search-results">
             <ul className="list-group">
-              {searchContext.searchResults.map(post => {
+              {/* Mostrar mensaje en caso de no retornar resultados */}
+              {!searchContext.isSearching && searchContext.searchResults.length === 0 &&
+                <div className="w-100 mt-5">
+                  <h3 className="lead text-center">
+                    No results found for <span className="font-weight-bold">{searchContext.searchTerm}</span>
+                  </h3>
+                </div>
+              }
+              {/* Mostrar lista de resultados */}
+              {!searchContext.isSearching && searchContext.searchResults.length > 0 && searchContext.searchResults.map(post => {
                 return (
                   <Link to={`/post/${post.id}`}>
                     <li className="list-group-item list-group-item-secondary mb-1">{post.title}</li>
