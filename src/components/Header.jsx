@@ -15,11 +15,13 @@ const Header = (props) => {
   
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    searchContext.setSearchTerm(searchTerm);
-    setIsLoading(true);
-    await searchContext.search(searchTerm);
-    setIsLoading(false);
-    props.history.push(`/search`)
+    if(searchTerm !== "") {
+      searchContext.setSearchTerm(searchTerm);
+      setIsLoading(true);
+      await searchContext.search(searchTerm);
+      setIsLoading(false);
+      props.history.push(`/search`)
+    }
   }
   
   return (
