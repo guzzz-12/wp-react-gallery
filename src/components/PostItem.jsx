@@ -24,7 +24,7 @@ const PostItem = (props) => {
 
   return (
     <React.Fragment>
-      <div className="col-6 post-item">
+      <div className="col-lg-6 post-item">
         {isLoading &&
           <React.Fragment>
             <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
