@@ -7,6 +7,7 @@ const Header = (props) => {
   const searchContext = useContext(SearchContext);
 
   const [searchTerm, setsearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeHandler = (e) => {
     setsearchTerm(e.target.value);
@@ -15,7 +16,9 @@ const Header = (props) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     searchContext.setSearchTerm(searchTerm);
+    setIsLoading(true);
     await searchContext.search(searchTerm);
+    setIsLoading(false);
     props.history.push(`/search`)
   }
   
@@ -36,8 +39,15 @@ const Header = (props) => {
               aria-label="Search"
               value={searchTerm}
               onChange={onChangeHandler}
+              disabled={isLoading}
             />
-            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">
+            <button className="btn btn-outline-light my-2 my-sm-0" type="submit" disabled={isLoading}>
+              {isLoading &&
+                <span
+                  class="spinner-border spinner-border-sm mr-2"
+                  role="status" aria-hidden="true"
+                />
+              }
               Search
             </button>
           </form>
