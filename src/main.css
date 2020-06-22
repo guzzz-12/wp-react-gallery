@@ -94,6 +94,16 @@ a:hover, a.active {
   transition: 250ms;
 }
 
+.page-item .page-link {
+  cursor: pointer;
+  color: #000;
+}
+
+.page-item.active .page-link {
+  background-color: #4b4b4b !important;
+  border-color: #e0e0e0;;
+}
+
 .footer {
   position: absolute;
   width: 100%;
