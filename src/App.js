@@ -66,12 +66,12 @@ function App() {
       >
         <BrowserRouter>
           <Header />
-          <div className="main-content container pt-3">
-            <div className="row">
-              <div className="col-3">
+          <div className="main-content container-md pt-3">
+            <div className="row justify-content-center">
+              <div className="col-md-3 col-sm-3 mb-5">
                 <CategoryMenu selectedCategory={selectedCategory} />
               </div>
-              <div className="col-9">
+              <div className="col-md-9 col-sm-8">
                 <Switch>
                   <Route exact path="/" component={MainContent} />
                   <Route
