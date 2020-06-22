@@ -19,7 +19,9 @@ const PostItem = (props) => {
     .catch((err) => {
       setError(err.message);
       setIsLoading(false)
-    })
+    });
+
+    // eslint-disable-next-line
   }, [])
 
   return (
