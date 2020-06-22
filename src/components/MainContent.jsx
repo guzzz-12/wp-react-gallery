@@ -25,6 +25,14 @@ const MainContent = () => {
     <div className="content-wrapper">
       <h3>All Posts</h3>
       <div className="row">
+        {/* Mostrar spinner al cargar data de los posts */}
+        {isLoading && !error &&
+          <div className="spinner-wrapper w-100">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        }
         {!isLoading && error &&
           <ErrorMessage message="There was an error trying to load the posts." />
         }

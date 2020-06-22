@@ -11,6 +11,7 @@ const PostsByCategory = (props) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true);    
     axios.get(`/posts?categories=${categoryId}`)
     .then((res) => {
       setPosts(res.data);
@@ -26,6 +27,14 @@ const PostsByCategory = (props) => {
     <div className="content-wrapper">
       <h3>Posts by Category: {props.currentCategory}</h3>
       <div className="row">
+        {/* Mostrar spinner al cargar data de los posts */}
+        {isLoading && !error &&
+          <div className="spinner-wrapper w-100">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        }
         {!isLoading && error &&
           <ErrorMessage message={`There was an error trying to load the <strong>${props.currentCategory}</strong> category posts.`} />
         }

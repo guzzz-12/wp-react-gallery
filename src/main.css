@@ -19,6 +19,13 @@ a:hover, a.active {
   padding-bottom: 6rem;
 }
 
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
 .category-item {
   background-color: transparent !important;
 }
