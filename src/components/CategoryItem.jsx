@@ -9,7 +9,7 @@ const CategoryItem = (props) => {
   return (
     <NavLink exact to={`/category/${props.category.id}`}>
       <li
-        className="list-group-item border-bottom category-item"
+        className="list-group-item text-center border-bottom category-item"
         onClick={() => setCurrentCategory(props.category.name)}
       >
         {props.category.name}

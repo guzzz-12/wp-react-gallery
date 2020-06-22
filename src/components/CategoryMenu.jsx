@@ -35,7 +35,7 @@ const CategoryMenu = (props) => {
         {!isLoading &&
           <React.Fragment>
             <NavLink exact to={`/`}>
-              <li className="list-group-item border-bottom category-item">
+              <li className="list-group-item text-center border-bottom category-item">
                 All
               </li>
             </NavLink>

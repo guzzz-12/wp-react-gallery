@@ -16,11 +16,17 @@ a:hover, a.active {
 .main-wrapper {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 3.5rem;
+  padding-bottom: 6rem;
 }
 
 .category-item {
   background-color: transparent !important;
+}
+
+@media screen and (max-width: 768px) {
+  .category-item {
+    padding: 10px 5px !important
+  }  
 }
 
 .post-item-overlay {
