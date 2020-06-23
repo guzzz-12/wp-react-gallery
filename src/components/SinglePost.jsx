@@ -16,33 +16,32 @@ const SinglePost = (props) => {
 
   // Buscar data del post y la imagen del post
   useEffect(() => {
-    axios.get(`/posts/${postId}`)
-    .then((res) => {
-      setPost(res.data);
-      return axios.get(`/media/${res.data.featured_media}`);
-    })
-    .then((res) => {
-      setPostImg(res.data.guid.rendered);
-      setIsLoading(false);
-    })
-    .catch((err) => {
-      setError(err.message);
-      setIsLoading(false);
-      console.log(err.message)
-    })
+    const fetchData = async () => {
+      try {
+        // Cargar data del post
+        const postData = await axios.get(`/posts/${postId}`);
+        setPost(postData.data);
 
-    // Buscar el autor del post
-    if(Object.keys(post).length > 0) {
-      axios.get(`/users/${post.author}`)
-      .then((res) => {
-        setPostAuthor(res.data.name)
-      })
-      .catch((err) => {
+        // Cargar imagen del post
+        const postImg = await axios.get(`/media/${postData.data.featured_media}`);
+        setPostImg(postImg.data.guid.rendered);
+
+        // Buscar el autor del post
+        const postAuthor = await axios.get(`/users/${postData.data.author}`);
+        setPostAuthor(postAuthor.data.name);
+
+        setIsLoading(false)
+
+      } catch (err) {
         setError(err.message);
+        setIsLoading(false);
         console.log(err.message)
-      })
+      }
     }
-  }, [postId, post]);
+
+    fetchData();
+    
+  }, [postId]);
 
   return (
     <React.Fragment>
