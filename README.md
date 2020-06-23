@@ -14,7 +14,7 @@ Frontend desarrollado en React que utiliza como backend el tema de Wordpress que
 ## Capturas de las pantallas principales
 
 ### Home
-![Home](https://i.imgur.com/lM0LbTt.png)
+![Home](https://i.imgur.com/qrvEjPs.png)
 
 ### Single Post
 ![SinglePost](https://i.imgur.com/r1ky70R.png)
