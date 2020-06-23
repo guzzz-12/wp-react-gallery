@@ -46,7 +46,7 @@ const Header = (props) => {
             <button className="btn btn-outline-light my-2 my-sm-0" type="submit" disabled={isLoading}>
               {isLoading &&
                 <span
-                  class="spinner-border spinner-border-sm mr-2"
+                  className="spinner-border spinner-border-sm mr-2"
                   role="status" aria-hidden="true"
                 />
               }

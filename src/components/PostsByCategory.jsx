@@ -30,8 +30,8 @@ const PostsByCategory = (props) => {
         {/* Mostrar spinner al cargar data de los posts */}
         {isLoading && !error &&
           <div className="spinner-wrapper w-100">
-            <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border text-light" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
         }

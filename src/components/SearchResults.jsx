@@ -16,8 +16,8 @@ const SearchResults = () => {
         {/* Mostrar spinner mientras cargan los resultados de la búsqueda */}
         {searchContext.isSearching &&
           <div className="spinner-wrapper w-100">
-            <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border text-light" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
         }
@@ -37,7 +37,7 @@ const SearchResults = () => {
               {/* Mostrar lista de resultados */}
               {!searchContext.isSearching && searchContext.searchResults.length > 0 && searchContext.searchResults.map(post => {
                 return (
-                  <Link to={`/post/${post.id}`}>
+                  <Link key={post.id} to={`/post/${post.id}`}>
                     <li className="list-group-item list-group-item-secondary mb-1">{post.title}</li>
                   </Link>
                 )
