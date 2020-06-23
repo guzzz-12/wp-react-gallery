@@ -19,6 +19,18 @@ a:hover, a.active {
   padding-bottom: 6rem;
 }
 
+@media screen and (max-width: 992px) {
+  .navbar .form-inline {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  }
+
+  .navbar .form-inline input.form-control {
+    flex-grow: 1;
+  }
+}
+
 .spinner-wrapper {
   display: flex;
   justify-content: center;
