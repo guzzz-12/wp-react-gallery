@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
+import ErrorMessage from "./ErrorMessage";
 
 const PostItem = (props) => {
   const {id, excerpt, featured_media} = props.post;
@@ -20,14 +21,14 @@ const PostItem = (props) => {
       setError(err.message);
       setIsLoading(false)
     });
-
+    
     // eslint-disable-next-line
   }, [])
 
   return (
     <React.Fragment>
       <div className="col-lg-6 post-item">
-        {isLoading &&
+        {isLoading && !error &&
           <React.Fragment>
             <SkeletonTheme color="#a0a0a0" highlightColor="#c5c5c5">
               <p>
@@ -40,7 +41,7 @@ const PostItem = (props) => {
             </SkeletonTheme>
           </React.Fragment>
         }
-        {!isLoading &&
+        {!isLoading && !error &&
         <React.Fragment>
           <Link to={`/post/${id}`}>
             <img className="img-fluid" src={postImage} alt=""/>
@@ -48,6 +49,9 @@ const PostItem = (props) => {
           </Link>
           <div className="post-item-overlay"></div>
         </React.Fragment>
+        }
+        {!isLoading && error &&
+          <ErrorMessage message="There was an error trying to load the post." />
         }
       </div>      
     </React.Fragment>
